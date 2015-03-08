@@ -48,9 +48,9 @@ void aciCallback(aci_evt_opcode_t event)
 }
 
 /**************************************************************************/
-/*!
-    This function is called whenever data arrives on the RX channel
-*/
+
+//    This function is called whenever data arrives on the RX channel
+
 /**************************************************************************/
 void rxCallback(uint8_t *buffer, uint8_t len)
 {
@@ -69,8 +69,11 @@ void rxCallback(uint8_t *buffer, uint8_t len)
   Serial.println(F(" ]"));
 
   /* Echo the same data back! */
-  uint8_t temp_data[4] = {'a', 'b', 'c', 'd'};
-  uart.write(temp_data, 4); 
+  uint8_t temp = (uint8_t) analogRead(A0);
+  Serial.println(temp);
+  uint8_t temp_data[1] = {(temp)};
+  
+  uart.write(temp_data, 1); 
 }
 
 /**************************************************************************/
