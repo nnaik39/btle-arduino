@@ -70,6 +70,7 @@ void rxCallback(uint8_t *buffer, uint8_t len)
 
   /* Echo the same data back! */
   digitalWrite(6, HIGH);
+  delayMicroseconds(10000);
   uint8_t temp = (uint8_t) analogRead(A0);
   Serial.println(temp);
   uint8_t temp_data[1] = {(temp)};
