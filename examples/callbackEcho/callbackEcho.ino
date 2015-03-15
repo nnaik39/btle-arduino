@@ -69,11 +69,13 @@ void rxCallback(uint8_t *buffer, uint8_t len)
   Serial.println(F(" ]"));
 
   /* Echo the same data back! */
+  digitalWrite(6, HIGH);
   uint8_t temp = (uint8_t) analogRead(A0);
   Serial.println(temp);
   uint8_t temp_data[1] = {(temp)};
   
-  uart.write(temp_data, 1); 
+  uart.write(temp_data, 1);
+  digitalWrite(6, LOW); 
 }
 
 /**************************************************************************/
@@ -88,7 +90,8 @@ void setup(void)
   Serial.println(F("Adafruit Bluefruit Low Energy nRF8001 Callback Echo demo"));
 
   uart.setRXcallback(rxCallback);
-  
+  pinMode(6, OUTPUT);
+  digitalWrite(6, LOW);
   uart.setACIcallback(aciCallback);
   uart.begin();
 }
